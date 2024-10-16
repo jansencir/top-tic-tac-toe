@@ -10,4 +10,4 @@ The Odin Project: Build a simple game of tic tac toe that can be played in the b
     - Make sure everything has a purpose (Ex: no dead code)
 - Build the game to play in the console FIRST
     - Do not start implementing HTML or CSS until the game works in the console
-    - First, build the game inside an array in the console
+    - First, Build the game inside an array in the console
