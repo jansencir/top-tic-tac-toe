@@ -1,0 +1,35 @@
+/* Font Styles */
+.kalam-light {
+    font-family: "Kalam", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.kalam-regular {
+    font-family: "Kalam", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.kalam-bold {
+    font-family: "Kalam", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+    /* Color Codes */
+    --softer-white: #eeeeee;
+
+    /* General */
+    font-size: 16px;
+}
+
+body {
+    font-family: "Kalam", sans-serif;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--softer-white);
+}
