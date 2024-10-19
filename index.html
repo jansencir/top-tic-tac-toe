@@ -3,11 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Tic Tac Toe!</title>
 </head>
 
 <body>
-    <h1>Tic Tac Toe!</h1>
+    <div id="container">
+        <h1>Tic Tac Toe</h1>
+        <div class="game-message">
+            Player One's Turn
+        </div>
+        <div class="game-container">
+            Imagine the Tic Tac Toe Box here
+        </div>
+        <div class="player-info">
+            <div class="player-one">
+                <p class="player-one-mark">X</p>
+                <input type="text" name="player" id="player-one-name" placeholder="Player One Name">
+            </div>
+            <div class="player-two">
+                <p class="player-two-mark">O</p>
+                <input type="text" name="player" id="player-two-name" placeholder="Player Two Name">
+            </div>
+        </div>
+        <button class="start-button">Start</button>
+        <button class="restart-button">Restart</button>
+    </div>
     <script src="./script.js"></script>
 </body>
 </html>
