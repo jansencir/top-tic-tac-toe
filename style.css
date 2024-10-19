@@ -61,6 +61,7 @@ h1 {
 .game-message {
     font-size: 2em;
     margin: 0.6rem 0;
+    height: 3.2rem;
     width: 100%;
     text-align: center;
     border-bottom: 0.15rem solid var(--notebook-blue);
