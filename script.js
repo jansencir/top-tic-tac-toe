@@ -1,6 +1,19 @@
+// task 1: build a GameBoard and display it when "start" is clicked
 const GameBoard = (() => {
-    gameBoard = ["", "", "", "", "", "", "", "", ""]
-})
+    let gameBoard = ["", "", "", "", "", "", "", "", ""]
+    const gameContainer = document.querySelector(".game-container");
+    const renderBoard = () => {
+        let boardHTML = "";
+        gameBoard.forEach((square, index) => {
+            console.log(index)
+            boardHTML += `<button class="square" id="square-${index}">${square}</button>`
+        })
+        gameContainer.innerHTML = boardHTML;
+        gameContainer.classList.add("background-clr");
+    }
+
+    return { renderBoard }
+})();
 
 function createPlayers(name, symbol) {
     return {
@@ -26,7 +39,7 @@ function returnPlayerValue(player) {
 
 const startBtn = document.getElementById("start");
 startBtn.addEventListener("click", () => {
-    console.log("LeBron James");
+    GameBoard.renderBoard();
 })
 
 
