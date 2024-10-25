@@ -18,8 +18,14 @@ const GameBoard = (() => {
             console.log(index)
             boardHTML += `<button class="square" id="square-${index}">${square}</button>`
         })
+
         gameContainer.innerHTML = boardHTML;
         gameContainer.classList.add("background-clr");
+
+        const squares = document.querySelectorAll(".square");
+        squares.forEach((square) => {
+        square.addEventListener("click", GameController.clickHandler)
+        })
     }
 
     return { renderBoard }
@@ -57,7 +63,12 @@ const GameController = (() => {
         GameBoard.renderBoard();
     }
 
-    return { start }
+    const clickHandler = (event) => {
+        let squareIndex = parseInt(event.target.id.split("-")[1])
+        console.log(squareIndex)
+    }
+
+    return { start, clickHandler }
 })();
 
 
