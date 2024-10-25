@@ -42,9 +42,27 @@ function createPlayers(input, symbol) {
 };
 
 
+const GameController = (() => {
+    let players = [];
+    let currentPlayer;
+    
+    const start = () => {
+        players = [
+            playerOne = createPlayers(document.getElementById("player-one-name"), "X"),
+            playerTwo = createPlayers(document.getElementById("player-two-name"), "O"),
+        ]
+        currentPlayer = 0;
+        console.log(playerOne)
+        console.log(playerTwo)
+        GameBoard.renderBoard();
+    }
+
+    return { start }
+})();
+
+
 const startBtn = document.getElementById("start");
 startBtn.addEventListener("click", () => {
-    GameBoard.renderBoard();
     GameController.start();
 });
 
