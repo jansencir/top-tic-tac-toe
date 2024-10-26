@@ -84,6 +84,15 @@ const GameController = (() => {
         }
 
         GameBoard.update(squareIndex, players[currentPlayerIndex].symbol);
+
+        if (checkForWin(GameBoard.getGameBoard(), players[currentPlayerIndex].symbol)) {
+            gameOver = true;
+            console.log(`${players[currentPlayerIndex].name} won!`)
+        } else if (checkForTie(GameBoard.getGameBoard())) {
+            gameOver = true;
+            console.log("It's a tie!")
+        }
+
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
     }
 
@@ -100,6 +109,27 @@ const GameController = (() => {
         restart,
     }
 })();
+
+
+function checkForWin(board) {
+    const winningCombinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ]
+    for (i = 0; i < winningCombinations.length; i++) {
+        const [a, b, c] = winningCombinations[i];
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            return true;
+        }
+    }
+    return false;
+}
 
 
 const startBtn = document.getElementById("start");
