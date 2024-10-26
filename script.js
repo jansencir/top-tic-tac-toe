@@ -72,7 +72,6 @@ const GameController = (() => {
         ]
         currentPlayerIndex = 0;
         gameOver = false;
-        GameDisplay.displayMessage(`It's ${players[currentPlayerIndex].name}'s turn, place your ${players[currentPlayerIndex].symbol}`)
         GameBoard.renderBoard();
     }
 
@@ -97,6 +96,10 @@ const GameController = (() => {
         }
 
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
+
+        if (!gameOver) {
+            GameDisplay.displayMessage(`It's ${players[currentPlayerIndex].name}'s turn, place your ${players[currentPlayerIndex].symbol}`)
+        }
     }
 
     const restart = () => {
