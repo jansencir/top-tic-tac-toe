@@ -87,9 +87,17 @@ const GameController = (() => {
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
     }
 
+    const restart = () => {
+        for (i = 0; i < 9; i++) {
+            GameBoard.update(i, "")
+        }
+        GameBoard.renderBoard();
+    }
+
     return {
         start,
-        clickHandler
+        clickHandler,
+        restart,
     }
 })();
 
@@ -102,5 +110,5 @@ startBtn.addEventListener("click", () => {
 
 const restartBtn = document.getElementById("restart");
 restartBtn.addEventListener("click", () => {
-    console.log("Baskemtball");
+    GameController.restart();
 });
