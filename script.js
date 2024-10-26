@@ -132,6 +132,11 @@ function checkForWin(board) {
 }
 
 
+function checkForTie(board) {
+    return board.every(cell => cell !== "")
+}
+
+
 const startBtn = document.getElementById("start");
 startBtn.addEventListener("click", () => {
     GameController.start();
