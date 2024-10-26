@@ -72,12 +72,15 @@ const GameController = (() => {
         ]
         currentPlayerIndex = 0;
         gameOver = false;
-        console.log(playerOne)
-        console.log(playerTwo)
+        GameDisplay.displayMessage(`It's ${players[currentPlayerIndex].name}'s turn, place your ${players[currentPlayerIndex].symbol}`)
         GameBoard.renderBoard();
     }
 
     const clickHandler = (event) => {
+        if (gameOver) {
+            return
+        }
+
         let squareIndex = parseInt(event.target.id.split("-")[1])
         if (GameBoard.getGameBoard()[squareIndex] !== "") {
             return
@@ -87,10 +90,10 @@ const GameController = (() => {
 
         if (checkForWin(GameBoard.getGameBoard(), players[currentPlayerIndex].symbol)) {
             gameOver = true;
-            console.log(`${players[currentPlayerIndex].name} won!`)
+            GameDisplay.displayMessage(`${players[currentPlayerIndex].name} wins!`)
         } else if (checkForTie(GameBoard.getGameBoard())) {
             gameOver = true;
-            console.log("It's a tie!")
+            GameDisplay.displayMessage("It's a tie!")
         }
 
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
