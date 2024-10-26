@@ -44,17 +44,19 @@ const GameBoard = (() => {
 })();
 
 
-const createPlayers = (input, symbol) => {
+const createPlayers = (input, symbol, score) => {
     if (input.value === "" ) {
         return {
             name: input.placeholder,
             symbol: symbol,
+            score: score,
         }
     }
     else if (input.value !== "") {
         return {
             name: input.value,
             symbol: symbol,
+            score: score,
         }
     }
 };
@@ -64,11 +66,13 @@ const GameController = (() => {
     let players = [];
     let currentPlayerIndex;
     let gameOver;
+    const playerOneScore = document.getElementById("player-one-score")
+    const playerTwoScore = document.getElementById("player-two-score")
     
     const start = () => {
         players = [
-            playerOne = createPlayers(document.getElementById("player-one-name"), "X"),
-            playerTwo = createPlayers(document.getElementById("player-two-name"), "O"),
+            playerOne = createPlayers(document.getElementById("player-one-name"), "X", 0),
+            playerTwo = createPlayers(document.getElementById("player-two-name"), "O", 0),
         ]
         currentPlayerIndex = 0;
         gameOver = false;
@@ -90,6 +94,10 @@ const GameController = (() => {
         if (checkForWin(GameBoard.getGameBoard(), players[currentPlayerIndex].symbol)) {
             gameOver = true;
             GameDisplay.displayMessage(`${players[currentPlayerIndex].name} wins!`)
+            
+            players[currentPlayerIndex].score += 1;
+            playerOneScore.innerHTML = players[0].score;
+            playerTwoScore.innerHTML = players[1].score;
         } else if (checkForTie(GameBoard.getGameBoard())) {
             gameOver = true;
             GameDisplay.displayMessage("It's a tie!")
