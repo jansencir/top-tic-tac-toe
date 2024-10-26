@@ -1,6 +1,3 @@
-// task 1: build a GameBoard and display it when "start" is clicked
-// task 2: grab players info and attach it to a mark "X" or "O"
-
 const GameDisplay = (() => {
     const displayMessage = (message) => {
         document.querySelector(".game-message").innerHTML = message;
@@ -75,6 +72,7 @@ const GameController = (() => {
             playerTwo = createPlayers(document.getElementById("player-two-name"), "O", 0),
         ]
         currentPlayerIndex = 0;
+        GameDisplay.displayMessage(`It's ${players[currentPlayerIndex].name}'s turn, place your ${players[currentPlayerIndex].symbol}`)
         gameOver = false;
         GameBoard.renderBoard();
     }
@@ -115,6 +113,8 @@ const GameController = (() => {
             GameBoard.update(i, "")
         }
         GameBoard.renderBoard();
+        gameOver = false;
+        GameDisplay.displayMessage(`New game! Place your ${players[currentPlayerIndex].symbol} ${players[currentPlayerIndex].name}`)
     }
 
     return {
