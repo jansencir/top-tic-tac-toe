@@ -6,7 +6,9 @@ const GameDisplay = (() => {
         document.querySelector(".game-message").innerHTML = message;
     }
 
-    return { displayMessage }
+    return {
+        displayMessage
+    }
 })();
 
 const GameBoard = (() => {
@@ -15,7 +17,6 @@ const GameBoard = (() => {
     const renderBoard = () => {
         let boardHTML = "";
         gameBoard.forEach((square, index) => {
-            console.log(index)
             boardHTML += `<button class="square" id="square-${index}">${square}</button>`
         })
 
@@ -24,15 +25,26 @@ const GameBoard = (() => {
 
         const squares = document.querySelectorAll(".square");
         squares.forEach((square) => {
-        square.addEventListener("click", GameController.clickHandler)
+            square.addEventListener("click", GameController.clickHandler)
         })
     }
 
-    return { renderBoard }
+    const update = (index, value) => {
+        gameBoard[index] = value;
+        renderBoard();
+    }
+
+    const getGameBoard = () => gameBoard;
+
+    return {
+        renderBoard,
+        update,
+        getGameBoard,
+    }
 })();
 
 
-function createPlayers(input, symbol) {
+const createPlayers = (input, symbol) => {
     if (input.value === "" ) {
         return {
             name: input.placeholder,
@@ -50,14 +62,16 @@ function createPlayers(input, symbol) {
 
 const GameController = (() => {
     let players = [];
-    let currentPlayer;
+    let currentPlayerIndex;
+    let gameOver;
     
     const start = () => {
         players = [
             playerOne = createPlayers(document.getElementById("player-one-name"), "X"),
             playerTwo = createPlayers(document.getElementById("player-two-name"), "O"),
         ]
-        currentPlayer = 0;
+        currentPlayerIndex = 0;
+        gameOver = false;
         console.log(playerOne)
         console.log(playerTwo)
         GameBoard.renderBoard();
@@ -65,10 +79,18 @@ const GameController = (() => {
 
     const clickHandler = (event) => {
         let squareIndex = parseInt(event.target.id.split("-")[1])
-        console.log(squareIndex)
+        if (GameBoard.getGameBoard()[squareIndex] !== "") {
+            return
+        }
+
+        GameBoard.update(squareIndex, players[currentPlayerIndex].symbol);
+        currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
     }
 
-    return { start, clickHandler }
+    return {
+        start,
+        clickHandler
+    }
 })();
 
 
